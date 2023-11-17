@@ -15,14 +15,14 @@ temp = *a;
 }
 
 /**
-* partition - Partitions an array using the Lomuto scheme
-* @array: The array to be partitioned
+* lomuto_partition - lomuto_partitions an array using the Lomuto scheme
+* @array: The array to be lomuto_partitioned
 * @size: The size of the array
-* @low: The lowest index of the partition
-* @high: The highest index of the partition
-* Return: The final partition index
+* @low: The lowest index of the lomuto_partition
+* @high: The highest index of the lomuto_partition
+* Return: The final lomuto_partition index
 */
-int partition(int *array, size_t size, int low, int high)
+int lomuto_partition(int *array, size_t size, int low, int high)
 {
 int pivot, i, j;
 
@@ -66,11 +66,11 @@ int pi;
 
 if (low < high)
 {
-	/* Partition the array */
-	pi = partition(array, size, low, high);
-	/* Sort the left partition */
+	/* lomuto_partition the array */
+	pi = lomuto_partition(array, size, low, high);
+	/* Sort the left lomuto_partition */
 	quick_sort_helper(array, size, low, pi - 1);
-	/* Sort the right partition */
+	/* Sort the right lomuto_partition */
 	quick_sort_helper(array, size, pi + 1, high);
 }
 }
