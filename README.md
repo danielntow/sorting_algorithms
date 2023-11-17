@@ -145,4 +145,5 @@ void quickSort(int arr[], int low, int high) {
 - Run the generated executable to see the sorting algorithm in action.
 
 `happy coding`
+`Big shouts to ALX and Danny`
 
