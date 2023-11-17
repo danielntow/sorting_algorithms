@@ -6,6 +6,7 @@ This repository contains implementations of various sorting algorithms in C.
 
 - **Bubble Sort:** Simple sorting algorithm that repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.
 
+```c
 void bubbleSort(int arr[], int n) {
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
