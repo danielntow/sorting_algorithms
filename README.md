@@ -22,6 +22,23 @@ void bubbleSort(int arr[], int n) {
 
 - **Selection Sort:** Divides the array into a sorted and an unsorted region, selecting the minimum element from the unsorted region in each pass.
 
+```c
+void selectionSort(int arr[], int n) {
+    int minIdx;
+    for (int i = 0; i < n - 1; i++) {
+        minIdx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIdx]) {
+                minIdx = j;
+            }
+        }
+        int temp = arr[minIdx];
+        arr[minIdx] = arr[i];
+        arr[i] = temp;
+    }
+}
+
+
 - **Insertion Sort:** Builds the final sorted array one item at a time, comparing each element with the elements in the sorted part of the array and shifting elements as needed.
 
 - **Merge Sort:** A divide-and-conquer algorithm that divides the array into two halves, sorts each half, and then merges the sorted halves to produce a fully sorted array.
