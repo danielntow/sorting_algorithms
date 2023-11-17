@@ -20,5 +20,5 @@ This repository contains implementations of various sorting algorithms in C.
 - Compile the respective C file using a C compiler (e.g., gcc) to generate the executable.
 - Run the generated executable to see the sorting algorithm in action.
 
-# 'happy coding'
+`happy coding`
 
