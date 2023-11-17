@@ -106,7 +106,7 @@ void mergeSort(int arr[], int l, int r) {
 }
 ```
 
-- **Quick Sort:** Uses a divide-and-conquer strategy to partition the array into smaller subarrays, sorting those subarrays independently.
+- **Quick Sort:** Uses a divide-and-conquer strategy to partition the array into smaller sub-arrays, sorting those sub-arrays independently.
 
 ```c
 void swap(int* a, int* b) {
