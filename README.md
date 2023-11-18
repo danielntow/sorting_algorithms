@@ -138,6 +138,10 @@ void quickSort(int arr[], int low, int high) {
 }
 ```
 
+- **Shell Sort:** This code represents the Shell Sort algorithm in C. Shell Sort is an efficient sorting algorithm that's an extension of Insertion Sort. It sorts elements at varying intervals, reducing the interval size in each pass until the whole array is sorted.
+
+
+
 ## How to Use:
 
 - Each sorting algorithm has its own C file with a clear implementation.
