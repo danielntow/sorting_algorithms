@@ -140,7 +140,22 @@ void quickSort(int arr[], int low, int high) {
 
 - **Shell Sort:** This code represents the Shell Sort algorithm in C. Shell Sort is an efficient sorting algorithm that's an extension of Insertion Sort. It sorts elements at varying intervals, reducing the interval size in each pass until the whole array is sorted.
 
-
+```c
+void shellSort(int arr[], int n) {
+    // Start with a big gap, then reduce the gap
+    for (int gap = n / 2; gap > 0; gap /= 2) {
+        // Perform gapped insertion sort for this gap size.
+        for (int i = gap; i < n; i++) {
+            int temp = arr[i];
+            int j;
+            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
+                arr[j] = arr[j - gap];
+            }
+            arr[j] = temp;
+        }
+    }
+}
+```
 
 ## How to Use:
 
