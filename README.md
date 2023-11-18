@@ -142,9 +142,9 @@ void quickSort(int arr[], int low, int high) {
 
 ```c
 void shellSort(int arr[], int n) {
-    // Start with a big gap, then reduce the gap
+    /* Start with a big gap, then reduce the gap */
     for (int gap = n / 2; gap > 0; gap /= 2) {
-        // Perform gapped insertion sort for this gap size.
+        /* Perform gapped insertion sort for this gap size.*/
         for (int i = gap; i < n; i++) {
             int temp = arr[i];
             int j;
