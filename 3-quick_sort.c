@@ -69,12 +69,16 @@ void quick_sort(int *array, size_t size)
 
 		if (pi - low < high - pi)
 		{
-			quick_sort(array, pi - low);
+			if (pi > low)
+				quick_sort(array, pi - low);
+
 			low = pi + 1;
 		}
 		else
 		{
-			quick_sort(array + pi + 1, high - pi);
+			if (pi < high)
+				quick_sort(array + pi + 1, high - pi);
+
 			high = pi - 1;
 		}
 	}
