@@ -1,5 +1,4 @@
 #include "sort.h"
-#include <stdio.h>
 
 /**
  * swap - Swaps two elements in an array
@@ -14,7 +13,7 @@ void swap(int *a, int *b)
 }
 
 /**
- * lomuto_partition - Partitions an array using the Lomuto scheme
+ * lomuto_partition - Partitions an array using Lomuto scheme
  * @array: The array to be partitioned
  * @size: The size of the array
  * @low: The lowest index of the partition
