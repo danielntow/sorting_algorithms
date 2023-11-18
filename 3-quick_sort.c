@@ -1,8 +1,6 @@
 #include "sort.h"
+#include <stdio.h>
 
-void swap(int *a, int *b);
-int lomuto_partition(int *array, size_t size, int low, int high);
-void quick_sort(int *array, size_t size);
 /**
  * swap - Swaps two elements in an array
  * @a: The first element to be swapped
