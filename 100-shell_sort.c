@@ -1,44 +1,40 @@
 #include "sort.h"
 
 /**
- * shell_sort - sorts an array of integers in ascending order
- * using the Shell sort algorithm, using the Knuth sequence
- * @array: the array to be sorted
- * @size: the size of the array
- */
+* shell_sort - Sorts an array of integers in ascending order
+*              using the Shell sort algorithm with Knuth sequence
+* @array: The array to be sorted
+* @size: Number of elements in the array
+*/
 void shell_sort(int *array, size_t size)
 {
-    size_t gap, i, j;
-    int temp;
+size_t gap = 1, j;
+int i, temp;
 
-    if (array == NULL || size < 2)
-        return;
+if (array == NULL || size < 2)
+	return;
 
-    /* Calculate the initial gap using the Knuth sequence */
-    gap = 1;
-    while (gap < size / 3)
-        gap = gap * 3 + 1;
+/* Calculate initial gap using Knuth sequence */
+while (gap <= size / 3)
+	gap = gap * 3 + 1;
 
-    /* Perform the Shell sort with decreasing gaps */
-    while (gap > 0)
-    {
-        /* Compare elements that are gap apart and swap if needed */
-        for (i = gap; i < size; i++)
-        {
-            temp = array[i];
-            j = i;
-            while (j >= gap && array[j - gap] > temp)
-            {
-                array[j] = array[j - gap];
-                j -= gap;
-            }
-            array[j] = temp;
-        }
+while (gap > 0)
+{
+	for (i = gap; i < (int)size; i++)
+	{
+		temp = array[i];
 
-        /* Print the array after each gap iteration */
-        print_array(array, size);
+		for (j = i; j >= gap && array[j - gap] > temp; j -= gap)
+		{
+			array[j] = array[j - gap];
+		}
 
-        /* Decrease the gap by a factor of 3 */
-        gap = (gap - 1) / 3;
-    }
+		array[j] = temp;
+	}
+
+	/* Print the array after each decrease in the gap */
+	print_array(array, size);
+
+	gap = (gap - 1) / 3; /* Update gap using Knuth sequence */
+}
 }
