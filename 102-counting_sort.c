@@ -1,60 +1,64 @@
 #include "sort.h"
 
 /**
- * counting_sort - Sorts an array of integers in ascending order using
- *                 the Counting Sort algorithm
- * @arr: Pointer to the array to be sorted
- * @size: Number of elements in the array
+ * counting_sort - sorts an array of integers in ascending order
+ * using the Counting sort algorithm
+ * @array: the array to be sorted
+ * @size: the size of the array
  */
-
-
-void counting_sort(int *arr, size_t size)
+void counting_sort(int *array, size_t size)
 {
-	if (size <= 1)
+	int *count, *output;
+	int max, i;
+
+	if (array == NULL || size < 2)
 		return;
 
-	int max_val = arr[0];
-	for (size_t i = 1; i < size; ++i)
+	/* Find the maximum value in the array */
+	max = array[0];
+	for (i = 1; i < (int)size; i++)
 	{
-		if (arr[i] > max_val)
-		{
-			max_val = arr[i];
-        	}
+		if (array[i] > max)
+			max = array[i];
 	}
 
-	int counting_size = max_val + 1;
-	int *count_arr = malloc(counting_size * sizeof(int));
-	if (count_arr == NULL)
+	/* Allocate memory for the count and output arrays */
+	count = malloc(sizeof(int) * (max + 1));
+	output = malloc(sizeof(int) * size);
+	if (count == NULL || output == NULL)
 	{
+		free(count);
+		free(output);
 		return;
 	}
 
-	for (int i = 0; i < counting_size; ++i)
+	/* Initialize the count array to zero */
+	for (i = 0; i <= max; i++)
+		count[i] = 0;
+
+	/* Count the frequency of each element in the array */
+	for (i = 0; i < (int)size; i++)
+		count[array[i]]++;
+
+	/* Calculate the cumulative sum of the count array */
+	for (i = 1; i <= max; i++)
+		count[i] += count[i - 1];
+
+	/* Print the count array */
+	print_array(count, max + 1);
+
+	/* Copy the elements from the array to the output array in sorted order */
+	for (i = size - 1; i >= 0; i--)
 	{
-		count_arr[i] = 0;
+		output[count[array[i]] - 1] = array[i];
+		count[array[i]]--;
 	}
 
-	for (size_t i = 0; i < size; ++i)
-	{
-		count_arr[arr[i]]++;
-	}
+	/* Copy the output array back to the original array */
+	for (i = 0; i < (int)size; i++)
+		array[i] = output[i];
 
-	printf("Counting Array: ");
-	for (int i = 0; i < counting_size; ++i)
-	{
-		printf("%d ", count_arr[i]);
-	}
-	printf("\n");
-
-	size_t index = 0;
-	for (int i = 0; i < counting_size; ++i)
-	{
-		while (count_arr[i] > 0)
-		{
-			arr[index++] = i;
-			count_arr[i]--;
-		}
-	}
-
-	free(count_arr);
+	/* Free the allocated memory */
+	free(count);
+	free(output);
 }
