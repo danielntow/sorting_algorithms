@@ -1,4 +1,5 @@
-#include "sort.h"
+include "sort.h"
+#include <stdio.h>
 
 /**
 * shell_sort - Sorts an array of integers in ascending order
@@ -9,8 +10,8 @@
 void shell_sort(int *array, size_t size)
 {
 size_t gap = 1, j;
-int i, temp;454
-333eweeww   WWCRAWE2`
+int i, temp;
+
 if (array == NULL || size < 2)
 	return;
 
@@ -34,7 +35,7 @@ while (gap > 0)
 
 	/* Print the array after each decrease in the gap */
 	print_array(array, size);
-
-	gap = (gap - 1) / 3; /* Update gap using Knuth sequence */
+	/* Update gap using Knuth sequence */
+	gap = (gap - 1) / 3;
 }
-wZ}
+}
