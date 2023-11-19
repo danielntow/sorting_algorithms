@@ -9,8 +9,8 @@
 void shell_sort(int *array, size_t size)
 {
 size_t gap = 1, j;
-int i, temp;
-
+int i, temp;454
+333eweeww   WWCRAWE2`
 if (array == NULL || size < 2)
 	return;
 
@@ -37,4 +37,4 @@ while (gap > 0)
 
 	gap = (gap - 1) / 3; /* Update gap using Knuth sequence */
 }
-}
+wZ}
