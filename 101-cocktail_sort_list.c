@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "sort.h"
 
 /**
@@ -56,9 +57,11 @@ while (swapped)
 		else
 			current = current->next;
 	}
+
 	/* If no swap was done, the list is sorted */
 	if (!swapped)
 		break;
+
 	swapped = 0;
 	current = current->prev;
 
