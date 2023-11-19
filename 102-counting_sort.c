@@ -1,64 +1,68 @@
 #include "sort.h"
 
 /**
- * counting_sort - sorts an array of integers in ascending order
- * using the Counting sort algorithm
- * @array: the array to be sorted
- * @size: the size of the array
+ * get_max_custom - Get the maximum value in an array of integers.
+ * @array: An array of integers.
+ * @size: The size of the array.
+ *
+ * Return: The maximum integer in the array.
+ */
+int get_max_custom(int *array, int size)
+{
+	int max_val, i;
+
+	for (max_val = array[0], i = 1; i < size; i++)
+	{
+		if (array[i] > max_val)
+			max_val = array[i];
+	}
+
+	return (max_val);
+}
+
+/**
+ * counting_sort - Sort an array of integers in ascending order
+ *                        using the counting sort algorithm.
+ * @array: An array of integers.
+ * @size: The size of the array.
+ *
+ * Description: Prints the counting array after setting it up.
  */
 void counting_sort(int *array, size_t size)
 {
-	int *count, *output;
-	int max, i;
+	int *count_custom, *sorted_custom, max_val_custom, i;
 
 	if (array == NULL || size < 2)
 		return;
 
-	/* Find the maximum value in the array */
-	max = array[0];
-	for (i = 1; i < (int)size; i++)
+	sorted_custom = malloc(sizeof(int) * size);
+	if (sorted_custom == NULL)
+		return;
+	max_val_custom = get_max_custom(array, size);
+	count_custom = malloc(sizeof(int) * (max_val_custom + 1));
+	if (count_custom == NULL)
 	{
-		if (array[i] > max)
-			max = array[i];
-	}
-
-	/* Allocate memory for the count and output arrays */
-	count = malloc(sizeof(int) * (max + 1));
-	output = malloc(sizeof(int) * size);
-	if (count == NULL || output == NULL)
-	{
-		free(count);
-		free(output);
+		free(sorted_custom);
 		return;
 	}
 
-	/* Initialize the count array to zero */
-	for (i = 0; i <= max; i++)
-		count[i] = 0;
-
-	/* Count the frequency of each element in the array */
+	for (i = 0; i < (max_val_custom + 1); i++)
+		count_custom[i] = 0;
 	for (i = 0; i < (int)size; i++)
-		count[array[i]]++;
+		count_custom[array[i]] += 1;
+	for (i = 0; i < (max_val_custom + 1); i++)
+		count_custom[i] += count_custom[i - 1];
+	print_array(count_custom, max_val_custom + 1);
 
-	/* Calculate the cumulative sum of the count array */
-	for (i = 1; i <= max; i++)
-		count[i] += count[i - 1];
-
-	/* Print the count array */
-	print_array(count, max + 1);
-
-	/* Copy the elements from the array to the output array in sorted order */
-	for (i = size - 1; i >= 0; i--)
+	for (i = 0; i < (int)size; i++)
 	{
-		output[count[array[i]] - 1] = array[i];
-		count[array[i]]--;
+		sorted_custom[count_custom[array[i]] - 1] = array[i];
+		count_custom[array[i]] -= 1;
 	}
 
-	/* Copy the output array back to the original array */
 	for (i = 0; i < (int)size; i++)
-		array[i] = output[i];
+		array[i] = sorted_custom[i];
 
-	/* Free the allocated memory */
-	free(count);
-	free(output);
+	free(sorted_custom);
+	free(count_custom);
 }
